@@ -82,7 +82,18 @@
 - [ ] 背景写真の差し込み（任意）
 - [ ] プロフィール文の確定
 - [x] 多言語対応（8言語）
-- [ ] GitHub Pages で公開
+- [x] GitHub Pages で公開
+
+## 8.5 公開URL
+**https://arlemcompany-lang.github.io/kanon/**
+
+| 項目 | 内容 |
+|------|------|
+| リポジトリ | https://github.com/arlemcompany-lang/kanon （public） |
+| ブランチ | main / ルート |
+| 更新方法 | ファイルを編集 → `git add -A` → `git commit` → `git push` （1〜2分で反映） |
+
+※ `<meta name="robots" content="noindex">` を入れているため検索には出ない（URLを知っている人だけが見られる）。
 
 ## 9. 未確定リスト（ユーザー確認待ち）
 1. fans サイトの名称とURL（2件か3件か）
