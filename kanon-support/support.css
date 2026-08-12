@@ -417,3 +417,28 @@
   .s-role-list > div{ grid-template-columns:4.2em 1fr; gap:8px; }
   .s-legal, .s-limited{ padding:18px 16px; }
 }
+
+/* ---------- 辞退できることの強調枠 ---------- */
+.s-callout{
+  margin-top:22px;
+  padding:20px;
+  border:1px solid rgba(176,138,60,.45);
+  border-radius:2px;
+  background:linear-gradient(150deg, rgba(253,247,238,.95), rgba(255,255,255,.95));
+  box-shadow:0 6px 20px rgba(124,30,56,.07);
+}
+.s-callout-title{
+  font-size:.92rem;
+  letter-spacing:.08em;
+  color:var(--wine);
+  margin-bottom:10px;
+}
+.s-callout-text{
+  font-size:.8rem;
+  line-height:2;
+  letter-spacing:.03em;
+  color:var(--text);
+}
+@media (max-width:380px){
+  .s-callout{ padding:17px 15px; }
+}
