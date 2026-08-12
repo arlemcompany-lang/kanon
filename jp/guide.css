@@ -1,0 +1,283 @@
+@charset "UTF-8";
+
+/* ============================================
+   日本向けファン案内ページ 専用スタイル
+   ・土台の色とフォントは ../css/style.css の :root を使う
+   ・このファイルは「案内ページだけで使う部品」を足すもの
+   ============================================ */
+
+.wrap-guide{
+  width:min(100% - 36px, 560px);
+}
+
+/* ---------- ヘッダー ---------- */
+.g-hero{
+  text-align:center;
+  animation:rise .9s ease-out both;
+}
+.icon-sm{
+  width:clamp(84px,22vw,104px);
+  margin-bottom:20px;
+}
+.g-eyebrow{
+  font-family:var(--serif-en);
+  font-size:.7rem;
+  letter-spacing:.34em;
+  text-indent:.34em;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+.g-title{
+  font-size:clamp(1.35rem,6vw,1.7rem);
+  font-weight:400;
+  letter-spacing:.1em;
+  color:var(--wine-deep);
+  line-height:1.5;
+}
+.g-lead{
+  margin-top:16px;
+  font-size:.86rem;
+  line-height:2.1;
+  color:var(--text-dim);
+  letter-spacing:.06em;
+}
+
+/* ---------- セクション ---------- */
+.g-sec{
+  margin-top:46px;
+  animation:rise .9s ease-out both;
+}
+.g-h2{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  font-size:1.02rem;
+  font-weight:400;
+  letter-spacing:.12em;
+  color:var(--wine-deep);
+  padding-bottom:12px;
+  margin-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.g-num{
+  font-family:var(--serif-en);
+  font-size:1.15rem;
+  letter-spacing:.06em;
+  color:var(--rose);
+}
+
+.g-text{
+  font-size:.88rem;
+  line-height:2.1;
+  letter-spacing:.05em;
+  color:var(--text);
+}
+.g-text-lead{
+  margin-bottom:18px;
+  color:var(--text-dim);
+}
+.g-text strong{
+  font-weight:500;
+  color:var(--wine);
+}
+
+.g-card{
+  padding:22px 20px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:linear-gradient(135deg, rgba(255,255,255,.9), rgba(253,240,243,.9));
+  box-shadow:0 6px 20px rgba(124,30,56,.06);
+}
+.g-card-note{
+  background:linear-gradient(135deg, rgba(253,246,240,.95), rgba(253,240,243,.95));
+}
+
+.g-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.g-list li{
+  position:relative;
+  padding-left:18px;
+  font-size:.84rem;
+  line-height:1.95;
+  letter-spacing:.04em;
+}
+.g-list li::before{
+  content:"";
+  position:absolute;
+  top:.85em;
+  left:0;
+  width:7px; height:7px;
+  border-radius:50%;
+  background:var(--rose);
+}
+
+/* ---------- 比較表 ---------- */
+.g-table-wrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(255,255,255,.9);
+}
+.g-table{
+  width:100%;
+  min-width:400px;
+  border-collapse:collapse;
+  font-size:.8rem;
+}
+.g-table th,
+.g-table td{
+  padding:12px 13px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+  line-height:1.7;
+  letter-spacing:.03em;
+  vertical-align:top;
+}
+.g-table thead th{
+  font-weight:500;
+  color:var(--wine);
+  background:rgba(243,223,228,.5);
+  white-space:nowrap;
+}
+.g-table tbody th{
+  font-weight:400;
+  color:var(--text-dim);
+  white-space:nowrap;
+  background:rgba(253,247,248,.8);
+}
+.g-table tbody tr:last-child th,
+.g-table tbody tr:last-child td{ border-bottom:none; }
+.g-yes{ color:var(--wine); }
+.g-note{
+  margin-top:8px;
+  font-size:.68rem;
+  color:var(--text-dim);
+  letter-spacing:.06em;
+}
+
+/* ---------- 登録ステップ ---------- */
+.g-steps{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.g-step{
+  position:relative;
+  display:flex;
+  gap:16px;
+  padding:0 0 24px 0;
+}
+/* 番号どうしをつなぐ縦線 */
+.g-step::before{
+  content:"";
+  position:absolute;
+  top:32px; left:15px;
+  width:1px; height:calc(100% - 32px);
+  background:linear-gradient(180deg, var(--line), transparent);
+}
+.g-step:last-child{ padding-bottom:0; }
+.g-step:last-child::before{ display:none; }
+
+.g-step-num{
+  flex:none;
+  width:31px; height:31px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--serif-en);
+  font-size:.9rem;
+  color:#fff;
+  background:linear-gradient(140deg, var(--wine), var(--rose));
+  box-shadow:0 4px 12px rgba(124,30,56,.22);
+}
+.g-step-body{ padding-top:2px; }
+.g-step-title{
+  font-size:.92rem;
+  letter-spacing:.06em;
+  color:var(--wine-deep);
+  margin-bottom:5px;
+}
+.g-step-text{
+  font-size:.8rem;
+  line-height:1.95;
+  color:var(--text-dim);
+  letter-spacing:.04em;
+}
+
+/* ---------- よくある質問 ---------- */
+.g-faq{
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(255,255,255,.85);
+  margin-bottom:10px;
+  overflow:hidden;
+}
+.g-faq summary{
+  position:relative;
+  padding:15px 44px 15px 16px;
+  font-size:.85rem;
+  letter-spacing:.05em;
+  color:var(--wine-deep);
+  cursor:pointer;
+  list-style:none;
+  min-height:48px;
+  -webkit-tap-highlight-color:transparent;
+}
+.g-faq summary::-webkit-details-marker{ display:none; }
+.g-faq summary::after{
+  content:"+";
+  position:absolute;
+  top:50%; right:16px;
+  transform:translateY(-50%);
+  font-size:1.1rem;
+  color:var(--rose);
+  transition:transform .25s ease;
+}
+.g-faq[open] summary::after{
+  content:"−";
+}
+.g-faq p{
+  padding:0 16px 16px;
+  font-size:.8rem;
+  line-height:2;
+  color:var(--text-dim);
+  letter-spacing:.04em;
+}
+
+/* ---------- 最後のボタン ---------- */
+.g-cta{ margin-top:52px; }
+.g-cta-lead{
+  text-align:center;
+  font-size:.8rem;
+  letter-spacing:.2em;
+  color:var(--text-dim);
+  margin-bottom:18px;
+}
+
+.g-back{
+  margin-top:34px;
+  text-align:center;
+}
+.g-back a{
+  font-size:.78rem;
+  letter-spacing:.1em;
+  color:var(--text-dim);
+  text-decoration:none;
+  border-bottom:1px solid var(--line);
+  padding-bottom:3px;
+}
+
+/* ---------- スマホ調整 ---------- */
+@media (max-width:380px){
+  .wrap-guide{ width:calc(100% - 26px); }
+  .g-card{ padding:18px 16px; }
+  .g-h2{ font-size:.95rem; gap:9px; }
+  .g-step{ gap:13px; }
+}
