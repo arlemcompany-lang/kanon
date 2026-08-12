@@ -60,9 +60,22 @@ Googleフォームは使わない。**画像添付のたびに応募者へGoogle
 |---------|------|
 | `index.html` 内の `.s-form` | フォーム本体（ページ埋め込み） |
 | `index.html` 末尾の `<script>` | 入力チェック・画像圧縮・送信 |
-| `Code.gs` | GAS側。スプレッドシート追記 ＋ Drive保存 ＋ メール通知 |
-| `Code_貼り付け用.txt` | GASエディタに貼る用（内容は Code.gs と同じ） |
-| `appsscript.json` | ウェブアプリ設定（全員アクセス可・実行は自分） |
+| `gas/Code.gs` | GAS側。スプレッドシート追記 ＋ Drive保存 ＋ メール通知 |
+| `gas/appsscript.json` | ウェブアプリ設定（全員アクセス可・実行は自分） |
+| `gas/.clasp.json` | clasp の設定。`rootDir` は `.`（gasフォルダ自身） |
+| `Code_貼り付け用.txt` | 手で貼るとき用の控え（内容は gas/Code.gs と同じ） |
+
+**GAS プロジェクト**
+| 項目 | 値 |
+|------|-----|
+| アカウント | hello@arlem-ai.com |
+| スクリプトID | `1fJI8O0d78hgTNNWS6apGJHgC_B6irFsXnYDuZzpzp2E09rFI91jG4ZrY` |
+| エディタ | https://script.google.com/d/1fJI8O0d78hgTNNWS6apGJHgC_B6irFsXnYDuZzpzp2E09rFI91jG4ZrY/edit |
+| ウェブアプリURL | https://script.google.com/macros/s/AKfycbwMkM-lUABK4EjhRepqDiCm8pqIteWg8w-q5LYT-frdoiNZ0my2xurXGkLX-9XlVwF2gQ/exec |
+
+- **更新方法**：`gas/` に入って `clasp push -f` → `clasp deploy --deploymentId <ID>` で同じURLのまま更新
+- **保存先のIDは Script Properties に持たせている**（`SPREADSHEET_ID` / `FOLDER_ID`）。
+  コードにIDを直接書かない。`setup()` を実行すると無ければ自動で作られる
 
 **受け取る項目**：希望する役割 / myfansアカウント名 / 購入スクショ / 確認事項3つ / ひとこと
 
