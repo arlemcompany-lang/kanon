@@ -96,16 +96,13 @@
     </a>
 
 
-    <!-- ▼ 日本語表示のときだけ出るボタン（日本向けファン案内ページ） -->
-    <a class="link-btn" href="jp/" data-only-lang="ja">
-      <span class="link-body">
-        <span class="link-label">ファンのみなさまへ</span>
-        <span class="link-sub">Fan guide (Japanese)</span>
-      </span>
-      <span class="link-arrow">&rarr;</span>
-    </a>
-
+    <!-- ▼ 日本語表示のときだけ出るテキストリンク（四角いボタンにしない） -->
   </nav>
+
+  <!-- 日本語のときだけ出る。他の言語では自動で消える -->
+  <p class="sub-link" data-only-lang="ja">
+    <a href="jp/">&rArr; 別の応援方法</a>
+  </p>
 
   <!-- ▼ 注意書き（不要ならこのブロックごと削除） -->
   <p class="notice" data-i18n="notice">18歳未満の方の閲覧はご遠慮ください</p>

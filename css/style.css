@@ -391,3 +391,29 @@ html[lang="tl"] .tagline{ font-size:.98rem; }
 
 /* 文字の拡大縮小・横スクロールの誤作動を防ぐ */
 html, body{ max-width:100%; overscroll-behavior-x:none; }
+
+/* ============================================
+   補助のテキストリンク（⇒ 別の応援方法）
+   四角いボタンにはせず、控えめな文字リンクにする
+   ============================================ */
+.sub-link{
+  margin-top:22px;
+  text-align:center;
+}
+.sub-link a{
+  display:inline-block;
+  padding:8px 4px;          /* 指で押しやすい高さを確保 */
+  font-size:.85rem;
+  letter-spacing:.1em;
+  color:var(--wine);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:color .3s ease, border-color .3s ease;
+}
+@media (hover:hover){
+  .sub-link a:hover{
+    color:var(--gold);
+    border-bottom-color:var(--gold);
+  }
+}
+.sub-link a:active{ color:var(--gold); }

@@ -96,7 +96,7 @@
 | 場所 | `jp/index.html` + `jp/guide.css` |
 | URL | https://arlemcompany-lang.github.io/kanon/jp/ |
 | 言語 | 日本語のみ（言語切替バー無し） |
-| 入口 | トップページに `data-only-lang="ja"` のボタン。**日本語表示のときだけ出る** |
+| 入口 | トップページ下部の `⇒ 別の応援方法` というテキストリンク（`data-only-lang="ja"`）。**日本語表示のときだけ出る**。fansサイトのボタンと区別するため、四角いボタンにはしていない |
 
 **中身の構成**
 1. はじめに（あいさつ）
