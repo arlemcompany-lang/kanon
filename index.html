@@ -95,6 +95,14 @@
       <span class="link-arrow">&rarr;</span>
     </a>
 
+
+    <!-- ▼ 日本語表示のときだけ出るボタン（使うときは下の4行のコメントを外してURLと名前を入れる）
+    <a class="link-btn" href="ここにURL" target="_blank" rel="noopener noreferrer" data-only-lang="ja">
+      <span class="link-body"><span class="link-label">日本向けサイト名</span><span class="link-sub">@kanon_nippon</span></span>
+      <span class="link-arrow">&rarr;</span>
+    </a>
+    -->
+
   </nav>
 
   <!-- ▼ 注意書き（不要ならこのブロックごと削除） -->
@@ -165,6 +173,19 @@ function setLang(lang){
   for(i = 0; i < nodes.length; i++){
     key = nodes[i].getAttribute("data-i18n");
     if(dict[key] !== undefined){ nodes[i].textContent = dict[key]; }
+  }
+
+  /* data-only-lang="ja"  → その言語のときだけ表示（カンマ区切りで複数可）
+     data-hide-lang="ja"  → その言語のときだけ隠す */
+  var only = document.querySelectorAll("[data-only-lang]");
+  for(i = 0; i < only.length; i++){
+    only[i].style.display =
+      (only[i].getAttribute("data-only-lang").split(",").indexOf(lang) >= 0) ? "" : "none";
+  }
+  var hide = document.querySelectorAll("[data-hide-lang]");
+  for(i = 0; i < hide.length; i++){
+    hide[i].style.display =
+      (hide[i].getAttribute("data-hide-lang").split(",").indexOf(lang) >= 0) ? "none" : "";
   }
 
   var btns = document.querySelectorAll(".lang-btn");
