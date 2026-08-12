@@ -442,3 +442,208 @@
 @media (max-width:380px){
   .s-callout{ padding:17px 15px; }
 }
+
+/* ============================================
+   応募フォーム
+   ============================================ */
+.s-form{
+  margin-top:34px;
+  padding:26px 22px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(255,255,255,.95);
+  box-shadow:0 8px 26px rgba(124,30,56,.08);
+}
+.s-h3-form{
+  margin:0 0 14px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--line);
+}
+.s-form-lead{
+  font-size:.78rem;
+  line-height:2;
+  letter-spacing:.03em;
+  color:var(--text-dim);
+  margin-bottom:26px;
+}
+
+.s-field{ margin-bottom:26px; }
+.s-label{
+  display:block;
+  font-size:.83rem;
+  letter-spacing:.06em;
+  color:var(--wine-deep);
+  margin-bottom:10px;
+}
+.s-req, .s-opt{
+  margin-left:9px;
+  padding:2px 7px;
+  border-radius:2px;
+  font-size:.6rem;
+  letter-spacing:.08em;
+  vertical-align:.12em;
+}
+.s-req{ color:#fff; background:var(--wine); }
+.s-opt{ color:var(--text-dim); background:var(--rose-pale); }
+.s-help{
+  font-size:.72rem;
+  line-height:1.9;
+  letter-spacing:.02em;
+  color:var(--text-dim);
+  margin-bottom:12px;
+}
+
+/* 入力欄（16px未満にするとiPhoneで拡大されるので下限16px） */
+.s-input{
+  width:100%;
+  padding:13px 14px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:#fff;
+  font-family:inherit;
+  font-size:16px;
+  color:var(--text);
+  transition:border-color .3s ease, box-shadow .3s ease;
+}
+.s-input::placeholder{ color:#c9b8bc; }
+.s-input:focus{
+  outline:none;
+  border-color:var(--rose);
+  box-shadow:0 0 0 3px rgba(201,120,140,.14);
+}
+.s-textarea{ resize:vertical; line-height:1.8; }
+
+/* 役割の選択 */
+.s-radios{ display:flex; flex-direction:column; gap:9px; }
+.s-radio, .s-check{
+  display:flex;
+  align-items:flex-start;
+  gap:11px;
+  min-height:44px;
+  padding:11px 13px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(253,247,248,.7);
+  font-size:.82rem;
+  line-height:1.75;
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition:border-color .3s ease, background .3s ease;
+}
+.s-check{ margin-bottom:9px; }
+.s-radio input, .s-check input{
+  flex:none;
+  width:19px; height:19px;
+  margin-top:.15em;
+  accent-color:var(--wine);
+}
+.s-radio:has(input:checked),
+.s-check:has(input:checked){
+  border-color:var(--rose);
+  background:rgba(243,223,228,.5);
+}
+
+/* 画像を選ぶ */
+.s-file{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  cursor:pointer;
+}
+.s-file-btn{
+  flex:none;
+  padding:12px 20px;
+  border:1px solid var(--wine);
+  border-radius:2px;
+  font-size:.82rem;
+  letter-spacing:.08em;
+  color:var(--wine);
+  background:#fff;
+  transition:background .3s ease, color .3s ease;
+}
+.s-file-btn:active{ background:var(--wine); color:#fff; }
+.s-file-name{
+  font-size:.74rem;
+  color:var(--text-dim);
+  overflow-wrap:anywhere;
+}
+.s-preview{
+  display:block;
+  width:100%;
+  max-width:220px;
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:2px;
+}
+
+/* 送信 */
+.s-submit{
+  display:block;
+  width:100%;
+  min-height:60px;
+  padding:20px 24px;
+  border:none;
+  border-radius:2px;
+  font-family:inherit;
+  font-size:1rem;
+  letter-spacing:.14em;
+  color:#fff;
+  cursor:pointer;
+  background:linear-gradient(120deg, var(--wine-deep), var(--wine) 55%, var(--rose));
+  box-shadow:0 10px 26px rgba(124,30,56,.28);
+  transition:transform .35s ease, box-shadow .35s ease, filter .35s ease;
+}
+@media (hover:hover){
+  .s-submit:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.06);
+    box-shadow:0 16px 32px rgba(124,30,56,.34);
+  }
+}
+.s-submit:active{ transform:scale(.99); }
+.s-submit:disabled{
+  filter:grayscale(.4);
+  opacity:.65;
+  cursor:default;
+  transform:none;
+}
+.s-submit-note{
+  margin-top:12px;
+  text-align:center;
+  font-size:.76rem;
+  line-height:1.8;
+  letter-spacing:.03em;
+  color:var(--wine);
+}
+.s-submit-note.is-ok{ color:var(--gold); }
+
+.s-privacy{
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  font-size:.72rem;
+  line-height:1.95;
+  letter-spacing:.02em;
+  color:var(--text-dim);
+}
+
+/* 送信完了後の表示 */
+.s-done-title{
+  font-size:1rem;
+  letter-spacing:.1em;
+  color:var(--wine);
+  text-align:center;
+  margin-bottom:14px;
+}
+.s-done-text{
+  font-size:.82rem;
+  line-height:2;
+  letter-spacing:.03em;
+  color:var(--text-dim);
+  text-align:center;
+}
+
+@media (max-width:380px){
+  .s-form{ padding:20px 16px; }
+  .s-file{ flex-direction:column; align-items:flex-start; gap:10px; }
+}

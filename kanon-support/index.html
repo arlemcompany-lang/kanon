@@ -217,13 +217,62 @@
       </p>
     </div>
 
-    <!-- 応募ボタン -->
-    <div class="s-apply">
-      <!-- ▼ 応募フォームのURLに差し替え -->
-      <a class="s-apply-btn" href="#" target="_blank" rel="noopener noreferrer">
-        応募フォームへ
-      </a>
-      <p class="s-apply-note">myfans のアカウント名と、購入がわかるスクリーンショットをご用意ください</p>
+    <!-- ===== 応募フォーム ===== -->
+    <div class="s-form" id="apply">
+      <h3 class="s-h3 s-h3-form">応募フォーム</h3>
+
+      <p class="s-form-lead">
+        当選のご連絡は myfans のダイレクトメッセージでお送りします。
+        メールアドレスや電話番号は入力しないでください。
+      </p>
+
+      <div class="s-field">
+        <p class="s-label">希望する役割<span class="s-req">必須</span></p>
+        <div class="s-radios">
+          <label class="s-radio"><input type="radio" name="role" value="男優"><span>男優</span></label>
+          <label class="s-radio"><input type="radio" name="role" value="撮影スタッフ"><span>撮影スタッフ</span></label>
+          <label class="s-radio"><input type="radio" name="role" value="どちらでも"><span>どちらでも</span></label>
+        </div>
+      </div>
+
+      <div class="s-field">
+        <label class="s-label" for="account">myfans のアカウント名<span class="s-req">必須</span></label>
+        <input class="s-input" type="text" id="account" placeholder="例：kanon_fan" autocomplete="off">
+      </div>
+
+      <div class="s-field">
+        <p class="s-label">購入がわかるスクリーンショット<span class="s-req">必須</span></p>
+        <p class="s-help">
+          加入していることがわかる画面を撮って選んでください。<br>
+          カード番号などの支払い情報が写っている場合は、消してから送ってください。
+        </p>
+        <label class="s-file" for="shot">
+          <span class="s-file-btn">画像を選ぶ</span>
+          <span class="s-file-name" id="shotName">選ばれていません</span>
+        </label>
+        <input type="file" id="shot" accept="image/*" hidden>
+        <img class="s-preview" id="shotPreview" alt="" hidden>
+      </div>
+
+      <div class="s-field">
+        <p class="s-label">確認事項<span class="s-req">必須</span></p>
+        <label class="s-check"><input type="checkbox" id="chkAge"><span>満20歳以上です</span></label>
+        <label class="s-check"><input type="checkbox" id="chkTerms"><span>報酬・交通費が出ないこと、撮影が東京都内であることに同意します</span></label>
+        <label class="s-check"><input type="checkbox" id="chkQuit"><span>当選しても辞退できることを理解しています</span></label>
+      </div>
+
+      <div class="s-field">
+        <label class="s-label" for="message">ひとこと<span class="s-opt">任意</span></label>
+        <textarea class="s-input s-textarea" id="message" rows="4" placeholder="伝えておきたいことがあれば"></textarea>
+      </div>
+
+      <button class="s-submit" type="button" id="submitBtn">応募する</button>
+      <p class="s-submit-note" id="submitNote"></p>
+
+      <p class="s-privacy">
+        身分証はこの時点では送らないでください。当選のご連絡のあと、別の方法で確認します。<br>
+        送信いただいた内容は選考のためだけに使い、選考が終わったら削除します。
+      </p>
     </div>
   </section>
 
@@ -237,6 +286,100 @@
   </footer>
 
 </main>
+
+<script>
+/* ===== 応募フォームの送信 =====
+   GASのウェブアプリURLをここに貼る（デプロイ後に差し替え） */
+var GAS_URL = "ここにGASのウェブアプリURLを貼る";
+
+(function(){
+  var fileInput  = document.getElementById("shot");
+  var fileName   = document.getElementById("shotName");
+  var preview    = document.getElementById("shotPreview");
+  var submitBtn  = document.getElementById("submitBtn");
+  var note       = document.getElementById("submitNote");
+  var shotData   = "";   /* 圧縮後のbase64（ヘッダ無し） */
+
+  function setNote(text, ok){
+    note.textContent = text;
+    if(ok){ note.classList.add("is-ok"); } else { note.classList.remove("is-ok"); }
+  }
+
+  /* 画像は大きいまま送ると失敗しやすいので、長辺1200pxのJPEGに縮めてから送る */
+  fileInput.addEventListener("change", function(){
+    var file = fileInput.files[0];
+    if(!file){ return; }
+    fileName.textContent = file.name;
+    setNote("", false);
+
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      var img = new Image();
+      img.onload = function(){
+        var max = 1200;
+        var w = img.width, h = img.height;
+        if(w > max || h > max){
+          if(w > h){ h = Math.round(h * max / w); w = max; }
+          else     { w = Math.round(w * max / h); h = max; }
+        }
+        var canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        var dataUrl = canvas.toDataURL("image/jpeg", 0.75);
+        shotData = dataUrl.split(",")[1];
+        preview.src = dataUrl;
+        preview.hidden = false;
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  submitBtn.addEventListener("click", function(){
+    var roleEl  = document.querySelector("input[name=role]:checked");
+    var account = document.getElementById("account").value.trim();
+    var message = document.getElementById("message").value.trim();
+    var age     = document.getElementById("chkAge").checked;
+    var terms   = document.getElementById("chkTerms").checked;
+    var quit    = document.getElementById("chkQuit").checked;
+
+    if(!roleEl){            setNote("希望する役割を選んでください", false); return; }
+    if(!account){           setNote("myfans のアカウント名を入力してください", false); return; }
+    if(!shotData){          setNote("購入がわかるスクリーンショットを選んでください", false); return; }
+    if(!age || !terms || !quit){ setNote("確認事項すべてにチェックを入れてください", false); return; }
+    if(GAS_URL.indexOf("ここに") === 0){ setNote("送信先が未設定です", false); return; }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "送信中...";
+    setNote("", false);
+
+    var data = {
+      role: roleEl.value,
+      account: account,
+      message: message,
+      image: shotData
+    };
+
+    /* 日本語の文字化けを防ぐため、クライアント側でBase64にしてから送る */
+    fetch(GAS_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: btoa(unescape(encodeURIComponent(JSON.stringify(data))))
+    }).then(function(){
+      document.querySelector(".s-form").innerHTML =
+        '<p class="s-done-title">応募を受け付けました</p>' +
+        '<p class="s-done-text">ありがとうございます。<br>' +
+        '当選した方にのみ、myfans のダイレクトメッセージでご連絡します。</p>';
+      window.scrollTo({ top: document.querySelector(".s-form").offsetTop - 40, behavior: "smooth" });
+    }).catch(function(){
+      setNote("送信に失敗しました。時間をおいて、もう一度お試しください。", false);
+      submitBtn.textContent = "応募する";
+      submitBtn.disabled = false;
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
